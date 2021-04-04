@@ -1,0 +1,51 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.14.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+plugins {
+  id "com.ewerk.gradle.plugins.querydsl" version "1.0.8"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.fun.club.auth'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+querydsl {
+    querydslSourcesDir = "src/main/generated/java"
+    querydslDefault = true
+    jpa = true
+}
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter")
+	compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.0.8.RELEASE")
+    compile("org.flywaydb:flyway-core:4.0.3")
+    compile("io.springfox:springfox-swagger2:2.4.0")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:1.2.7.RELEASE")
+    compile("org.postgresql:postgresql:9.4-1205-jdbc42")
+	compile("org.springframework:spring-jms")
+    compile('com.google.code.gson:gson:2.2.4')
+	compile("com.querydsl:querydsl-jpa:4.1.4")
+    compile("com.querydsl:querydsl-core:4.1.4")
+    compile("com.querydsl:querydsl-apt:4.1.4")
+    compile("org.projectlombok:lombok:1.16.18")
+		
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
